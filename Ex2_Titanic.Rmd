@@ -1,0 +1,44 @@
+---
+title: "Ex. 2 - Data Wrangling with Titanic dataset"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This script shows efforts for a basic data munging assignment using the Titanic dataset available here: http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic3.xls
+
+Save the data set as a CSV file called titanic_original.csv and load it in RStudio into a data frame.
+
+This exercise provides experience with missing values or NA data.
+
+1. Embarkment- The embarked column has one missing value, which is known to correspond to a passenger who actually embarked at Southampton. Find the missing value and replace it with S.
+Using print(), I find two missing values and replace both with S.
+```
+print(titanic_original$embarked)
+titanic_original$embarked<-replace(E, 169, "S") 
+titanic_original$embarked<-replace(E, 285, "S")
+```
+2. Age - Calculate the mean of the Age column and use that value to populate the missing values
+```
+age<-titanic_original$age
+mean(titanic_original$age, trim=0, na.rm = TRUE)
+age<-mapvalues(age, from = NA, to = 29.881)
+titanic_original$age<-age
+```
+3.Cabin - Fill the missing values in the boat column with a dummy value. e.g. NA
+```
+class(titanic_original$cabin)
+titanic_original$cabin<-mapvalues(titanic_original$cabin, from = "", to = NA)
+levels(titanic_original$cabin)
+```
+
+4. You have a hunch that the fact that the cabin number is missing might be a useful indicator of survival. Create a new column has_cabin_number which has "1" if there is a cabin number, and "0" otherwise.
+```
+titanic_original$has_cabin_number <- ifelse (is.na(titanic_original$cabin), "0", "1")
+```
+Save clean table as titanic_clean.csv and upload with script and titanic_original to github.
+```
+write.csv(titanic_original, file="titanic_clean.csv")
+```
