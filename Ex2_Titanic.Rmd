@@ -23,7 +23,7 @@ titanic_original$embarked <- replace(E, 285, "S")
 2. Age - Calculate the mean of the Age column and use that value to populate the missing values
 ```
 age <- titanic_original$age
-mean(titanic_original$age, trim=0, na.rm = TRUE)
+mean(titanic_original$age, trim = 0, na.rm = TRUE)
 age <- mapvalues(age, from = NA, to = 29.881)
 titanic_original$age <- age
 ```
