@@ -1,4 +1,4 @@
-This is a basic data munging exercise to for beginner R experience with NA values using the well-known public Titanic passenger dataset. This project is an assignment from the Springboard.com Data Science Career Track. 
+This is a basic data munging exercise for R beginners to gain experience with NA values using the well-known public Titanic passenger dataset. This project is an assignment from the Springboard.com Data Science Career Track. 
 
 Files included:
 
